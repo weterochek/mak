@@ -1,19 +1,21 @@
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
+const app = express();
 
-dotenv.config();
 
+
+// Модули для CORS и JSON
 app.use(cors());
 app.use(express.json());
-console.log("MongoDB URI from .env:", process.env.MONGO_URI); // This should print the MongoDB URI
+console.log("MongoDB URI from .env:", process.env.MONGODB_URI); // This should print the MongoDB URI
 const URL = process.env.MONGO_URI;
 
-// Подключение к MongoDB
 mongoose
-  .connect(URL, { useNewUrlParser: true, useUnifiedTopology: true }) // Заменили uri на URL
+  .connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch((error) => console.error('Error connecting to MongoDB Atlas:', error));
 
@@ -54,12 +56,13 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// Запуск сервера
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
 // Проверка соединения
 app.get("/connect", (req, res) => {
   res.send("Соединение с сервером успешно!");
-});
-
-// Запуск сервера
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
 });
