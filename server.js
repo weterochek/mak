@@ -6,12 +6,10 @@ const cors = require("cors");
 
 dotenv.config();
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-const URL = "mongodb+srv://weter:drakon25@cluster0.3v6ie.mongodb.net/moviebox?retryWrites=true&w=majority&appName=Cluster0";
-
 app.use(cors());
-app.use(express.json()); // Здесь добавлены скобки
+app.use(express.json());
+console.log("MongoDB URI from .env:", process.env.MONGO_URI); // This should print the MongoDB URI
+const URL = process.env.MONGO_URI;
 
 // Подключение к MongoDB
 mongoose
