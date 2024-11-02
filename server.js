@@ -11,7 +11,7 @@ const app = express();
 // Модули для CORS и JSON
 app.use(cors());
 app.use(express.json());
-console.log("MongoDB URI from .env:", process.env.MONGODB_URI); // This should print the MongoDB URI
+console.log("MongoDB URI from .env:", process.env.MONGO_URI); // This should print the MongoDB URI
 const URL = process.env.MONGO_URI;
 
 mongoose
